@@ -32,7 +32,7 @@ const Navigation = () => (
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
   }
 })
 

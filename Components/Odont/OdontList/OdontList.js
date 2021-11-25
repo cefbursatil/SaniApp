@@ -52,7 +52,6 @@ export const OdontList = ({navigation}) => {
     console.log("LOADING "+loading );
     return (
         <View  style={{display: 'flex', flexDirection: 'column'}}>
-            <Text>YEAHHHHH</Text>
             {(loading) && <Spinner/>}
             {result && filter.map((item =>
                 (
