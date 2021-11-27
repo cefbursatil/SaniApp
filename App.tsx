@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Fragment } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Navigation from './Navigation/Navigation';
+import { StyleSheet} from 'react-native';
+import MainNavigation from './Navigation';
 export default function App() {
   return (
     <Fragment>
-      <Navigation/>
+      <MainNavigation/>
       <StatusBar style="auto" />
     </Fragment>
   );
