@@ -23,7 +23,7 @@ const Navigation = () => (
         
       }}
     />
-    <Stack.Screen options={({route}) =>({ headerTintColor: 'black', title: route.params.odont.nombre })} name="Detail" component={DetailOdont} />
+    <Stack.Screen options={({route}) =>({ headerTintColor: 'white', title: route.params.odont.nombre })} name="Detail" component={DetailOdont} />
   </Stack.Navigator>
 
 );

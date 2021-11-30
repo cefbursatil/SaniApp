@@ -5,13 +5,50 @@ import Spinner from "../Stateless/Spinner/Spinner";
 //import { useParams } from "react-router";
 import { GeneralContext } from "../../../context/GeneralContext";
 import { getFirestore1 } from "../../../Services/getFirestore1";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { selectedOdont,UpdateOdont } from "../../../store/actions/list.actions";
+
 export const OdontList = ({navigation}) => {
-    const {loading} = useContext(GeneralContext)
-    const result= useSelector(state => state.odontologos.odontologos)
-    console.log("data")
-    console.log(result)
+    const dispatch = useDispatch()
+    const [result,setResult] = useState(null);
+    const {setLoading,loading,search} = useContext(GeneralContext)
+    //console.log("Yeah");
+    const task = new Promise((resolve,reject) => {
+            
+            const db =getFirestore1();
+            //console.log(db)
+            db.collection('odontologos').get()
+            .then(resp => resolve(resp.docs.map(it => ({img:"https://fabriziodellapollaodontologo.com/wp-content/uploads/2020/01/001-1-%C2%BFA-Qu%C3%A9-Se-Dedica-Un-Odont%C3%B3logo-1024x683.jpg",id2:it.id,...it.data()}))))
+        
+        //acá indico que quiero que este setTimeout demore 3 segundos
+    })
+    
+    useEffect(()=> {
+        
+        if(!result){
+            setLoading(true)
+            task.then((res,err)=>{
+                if(err) console.log(err)
+
+                dispatch(UpdateOdont(res))
+                setResult(res)
+                console.log("RESULTADO")
+                setLoading(false);
+
+            }).catch((error) =>{
+                console.log("ERROR FIREBASE")
+                console.log(error)
+            }).finally(() =>{
+                console.log('finalizado')
+            })
+        }
+    },[result]);
+
+    //console.log("data")
+    //console.log(result)
+
     const handleSelectOdont = (item) => {
+        dispatch(selectedOdont(item.id))
         navigation.navigate('Detail', {
           odont: item,
         });
@@ -20,6 +57,7 @@ export const OdontList = ({navigation}) => {
     // aca estoy filtrando los productos
     
     const filter = result && result.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()));
+
     //const filter=result;
     //console.log("LOADING "+loading );
     return (

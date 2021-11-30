@@ -28,13 +28,13 @@ export const Sani = ({navigation}) => {
     const LoadFonts = async () => {
     await useFonts();
     };
-    console.log("READY FONTS "+IsReady);
+    //console.log("READY FONTS "+IsReady);
     if (!IsReady) {
     return (
         <AppLoading
         startAsync={LoadFonts}
         onFinish={() => {
-            console.log("ReadyFonts");
+            //console.log("ReadyFonts");
             SetIsReady(true);
         }
         }
