@@ -1,5 +1,7 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers,applyMiddleware } from "redux";
+
 import ListReducer from "./reducers/list.reducers";
+
 const RootReducer= combineReducers({
     odontologos: ListReducer,
 })
