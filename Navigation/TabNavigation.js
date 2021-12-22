@@ -25,7 +25,7 @@ const TabNavigation= () => {
                 }}
             />
             <BottomTabs.Screen 
-                name="MapScreen" 
+                name="MapNavigation" 
                 component={MapNavigation}
                 options={{
                     tabBarIcon: ({focused}) => (

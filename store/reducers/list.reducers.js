@@ -4,6 +4,7 @@ import React,{ useState,useContext,useEffect } from "react";
 import { getFirestore1 } from "../../Services/getFirestore1";
 import { SELECT_ODONT } from "../actions/list.actions";
 import { UPDATE_ODONT } from "../actions/list.actions";
+import { LOAD_ODONT } from "../actions/list.actions";
 const initialState= {
         odontologos: [],
         selected:null,
@@ -23,6 +24,11 @@ const ListReducer = (state=initialState,action) => {
                 ...state,
                 odontologos: action.list,
             };
+        case LOAD_ODONT:
+            return{
+                ...state,
+                odontologos: action.list,
+            };    
         default:
             return state;
 

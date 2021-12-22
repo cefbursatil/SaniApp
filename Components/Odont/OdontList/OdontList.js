@@ -6,7 +6,7 @@ import Spinner from "../Stateless/Spinner/Spinner";
 import { GeneralContext } from "../../../context/GeneralContext";
 import { getFirestore1 } from "../../../Services/getFirestore1";
 import { useSelector,useDispatch } from "react-redux";
-import { selectedOdont,UpdateOdont } from "../../../store/actions/list.actions";
+import { loadOdonts, selectedOdont,UpdateOdont } from "../../../store/actions/list.actions";
 
 export const OdontList = ({navigation}) => {
     const dispatch = useDispatch()
@@ -16,7 +16,6 @@ export const OdontList = ({navigation}) => {
     const task = new Promise((resolve,reject) => {
             
             const db =getFirestore1();
-            //console.log(db)
             db.collection('odontologos').get()
             .then(resp => resolve(resp.docs.map(it => ({img:"https://fabriziodellapollaodontologo.com/wp-content/uploads/2020/01/001-1-%C2%BFA-Qu%C3%A9-Se-Dedica-Un-Odont%C3%B3logo-1024x683.jpg",id2:it.id,...it.data()}))))
         
@@ -29,14 +28,17 @@ export const OdontList = ({navigation}) => {
             setLoading(true)
             task.then((res,err)=>{
                 if(err) console.log(err)
-
+                console.log("LOAD DATABASE")
                 dispatch(UpdateOdont(res))
-                setResult(res)
                 console.log("RESULTADO")
+                setResult(res)
                 setLoading(false);
 
             }).catch((error) =>{
                 console.log("ERROR FIREBASE")
+                dispatch(loadOdonts())
+                const odonts = useSelector(state => state.odontologos.odontologos);
+                setResult(odonts)
                 console.log(error)
             }).finally(() =>{
                 console.log('finalizado')
