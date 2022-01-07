@@ -3,6 +3,7 @@ import { StyleSheet,View,Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Navigation from './Navigation';
 import MapNavigation from './MapNavigation';
+import { MenuInicial } from '../screens/Menuinicial';
 import { Ionicons } from '@expo/vector-icons';
 
 const BottomTabs = createBottomTabNavigator();
@@ -14,11 +15,22 @@ const TabNavigation= () => {
             tabBarStyles: styles.tabBar,
             tabBarShowLabel:false,
         }}>
-            <BottomTabs.Screen name="ListOdonto" component={Navigation} 
+
+            <BottomTabs.Screen name="home" component={MenuInicial} 
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={styles.item}>
                             <Ionicons name="md-home" size={24} color={focused ? 'blue' : "black"}  />
+                            <Text>home</Text>
+                        </View>
+                    )
+                }}
+            />
+            <BottomTabs.Screen name="ListOdonto" component={Navigation} 
+                options={{
+                    tabBarIcon: ({focused}) => (
+                        <View style={styles.item}>
+                            <Ionicons name="list-outline" size={24} color={focused ? 'blue' : "black"}  />
                             <Text>Lista</Text>
                         </View>
                     )

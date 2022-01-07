@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import {
   View, Text
 } from 'react-native';
 import { OdontList } from '../Components/Odont/OdontList/OdontList';
-import Header from '../Components/Odont/Header/Header';
-import WrapperContext from '../Components/Wrapper/WrapperContext';
 import AppLoading from 'expo-app-loading';
 import useFonts from '../hooks/useFonts';
+import { GeneralContext } from '../context/GeneralContext';
+import SearchBar from '../Components/search/SearchBar';
 
 export const Sani = ({navigation}) => {
 
@@ -22,7 +22,7 @@ export const Sani = ({navigation}) => {
     
     //         )
 
-
+    const {search,setSearch,clicked,setClicked,activateSearch,setactivateSearch} = useContext(GeneralContext)
     const [IsReady, SetIsReady] = useState(false);
 
     const LoadFonts = async () => {
@@ -47,10 +47,15 @@ export const Sani = ({navigation}) => {
     else{
         return (
             <View>
-                <WrapperContext>    
-                <Header/>
+                {activateSearch && <SearchBar
+                    searchPhrase={search}
+                    setSearchPhrase={setSearch}
+                    clicked={clicked}
+                    setClicked={setClicked}
+                    setactivateSearch={setactivateSearch}
+
+                />}
                 <OdontList navigation={navigation}/>
-                </WrapperContext>  
             </View>
                 
 

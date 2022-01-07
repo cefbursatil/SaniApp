@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from "react";
 import { View, StyleSheet, Alert } from 'react-native';
 import * as Location from 'expo-location';
 import { Map } from './Map';
-
+import SearchBar from '../Components/search/SearchBar'
+import { GeneralContext } from "../context/GeneralContext";
 export const MapScreen = ({navigation}) => {
   const [pickedLocation, setPickedLocation] = useState(null);
-
+  const {search,setSearch,clicked,setClicked,activateSearch,setactivateSearch} = useContext(GeneralContext)
   const verifyPermissions = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -49,6 +50,14 @@ export const MapScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      {activateSearch && <SearchBar
+        searchPhrase={search}
+        setSearchPhrase={setSearch}
+        clicked={clicked}
+        setClicked={setClicked}
+        setactivateSearch={setactivateSearch}
+
+      />}
       {pickedLocation && <Map navigation={navigation} Location={pickedLocation} />}
 
       

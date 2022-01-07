@@ -4,8 +4,8 @@ export const GeneralContext = createContext({})
 export const GeneralContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
-
-
+    const [clicked, setClicked] = useState(false);
+    const [activateSearch, setactivateSearch] = useState(false);
   return (
     <GeneralContext.Provider
       value={{
@@ -13,6 +13,10 @@ export const GeneralContextProvider = ({ children }) => {
         setLoading,
         search,
         setSearch,
+        clicked,
+        setClicked,
+        activateSearch,
+        setactivateSearch,
       }}
     >
       {children}

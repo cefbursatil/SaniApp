@@ -5,7 +5,7 @@ import colors from '../../../constants/colors';
 const Header = () => {
   return (
     <View style={styles.header}>
-      <Text style={styles.headerTitle}>SANI Odontologos</Text>
+      <Text style={styles.headerTitle}>Bienvenido a SANI Odontologos</Text>
     </View>
   );
 };
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: 'black' ,
     fontSize: 22,
-    fontFamily: "GothamBook"
   }
 });
 

@@ -22,7 +22,7 @@ export const Map = ({navigation,Location}) => {
         longitudeDelta: 0.0421,
     }
     const odonts = useSelector(state => state.odontologos.odontologos);
-
+    const filter = odonts && odonts.filter((p) => p.nombre.toLowerCase().includes(search.toLowerCase()));
 
     const mapStyle = [
         {
@@ -85,7 +85,7 @@ export const Map = ({navigation,Location}) => {
               customMapStyle={mapStyle}
               showsUserLocation={true}
               onPress= {()=>handleClickMap()}>
-              {odonts.map(item=>(
+              {filter.map(item=>(
               <Marker key={item.id} title={item.nombre} coordinate={{
                   latitude: item.lat,
                   longitude: item.long,

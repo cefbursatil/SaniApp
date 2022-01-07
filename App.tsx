@@ -5,6 +5,7 @@ import store from './store';
 import { StyleSheet} from 'react-native';
 import MainNavigation from './Navigation';
 import { init } from './db';
+import WrapperContext from './Components/Wrapper/WrapperContext';
 
 init()
 .then(() => console.log('Database initialized'))
@@ -16,8 +17,10 @@ init()
 export default function App() {
   return (
     <Provider store={store}>
-      <MainNavigation/>
-      <StatusBar style="auto" />
+      <WrapperContext>    
+        <MainNavigation/>
+        <StatusBar style="auto" />
+      </WrapperContext>    
     </Provider>
   );
 }

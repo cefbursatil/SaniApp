@@ -5,7 +5,7 @@ import WrapperContext from '../Components/Wrapper/WrapperContext';
 import { useSelector } from 'react-redux';
 //import AppLoading from 'expo-app-loading';
 //import useFonts from '../hooks/useFonts';
-export const ContactOdont = ({ route }) => {
+export const ContactOdont = ({ navigation }) => {
     const odont = useSelector(state=>state.odontologos.filteredOdont)
 
     const {nombre,Consultorio,Especialidad} = odont[0]
