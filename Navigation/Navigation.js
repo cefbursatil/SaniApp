@@ -3,6 +3,7 @@ import { StyleSheet,TouchableOpacity,View} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Sani } from "../screens/Sani";
 import { DetailOdont } from "../screens/DetailOdont";
+import { ContactOdont } from '../screens/ContactOdont';
 import { Ionicons } from '@expo/vector-icons';
 import Styles from '../Components/Odont/Styles/Styles';
 import { GeneralContext } from '../context/GeneralContext';
@@ -38,6 +39,7 @@ const Navigation = () => {
       }}
     />
     <Stack.Screen options={({route}) =>({ headerTintColor: 'white', title: route.params.odont.nombre })} name="Detail" component={DetailOdont} />
+    <Stack.Screen options={({route}) =>({ headerTintColor: 'white', title: route.params.odont.nombre })} name="Contact" component={ContactOdont} />
   </Stack.Navigator>
 
 )};

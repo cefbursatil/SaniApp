@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {View,Text,Button} from 'react-native';
-
+import { ContactOdont } from './ContactOdont';
 import { useSelector,useDispatch  } from 'react-redux';
 import { selectedOdont } from '../store/actions/list.actions';
+
 //import AppLoading from 'expo-app-loading';
 //import useFonts from '../hooks/useFonts';
 export const DetailOdont = ( {navigation}) => {
@@ -11,7 +12,7 @@ export const DetailOdont = ( {navigation}) => {
     const {nombre,Consultorio,Especialidad} = odont[0]
     const handleSelectOdont = (item) => {
         dispatch(selectedOdont(item.id))
-        navigation.navigate('Detail', {
+        navigation.navigate('Contact', {
           odont: item,
         });
       };
@@ -28,6 +29,7 @@ export const DetailOdont = ( {navigation}) => {
                         color="#841584"
                         accessibilityLabel="ContactarDentista"
                     />
+                    {}
                 </View>
                       
             )
